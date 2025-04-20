@@ -22,11 +22,24 @@ This is a clean, minimal, responsive, and elegant demo of Razorpay payment gatew
    bun install
    ```
 3. Create a `.env.local` file in the root directory with your Razorpay API keys:
+
    ```
    RAZORPAY_KEY_ID=your_key_id
    RAZORPAY_KEY_SECRET=your_key_secret
    RAZORPAY_WEBHOOK_SECRET=your_webhook_secret
    ```
+
+> **Security Note:**
+> - `.env.local` is included in `.gitignore` by default and should **never be committed or shared**.
+> - Never expose your Razorpay Key Secret or Webhook Secret in frontend or public code.
+
+> **Key Rotation:**
+> - If you regenerate your API keys in the Razorpay Dashboard, you **must update your `.env.local`** with the new values and **restart your development server**.
+
+> **Official Razorpay Documentation:**
+> - [API Authentication](https://razorpay.com/docs/api/understand/#api-authentication)
+> - [API Overview](https://razorpay.com/docs/api/understand/)
+
 4. Run the development server
    ```bash
    bun run dev

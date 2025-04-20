@@ -54,11 +54,12 @@ function verifyWebhookSignature(
   if (!signature) return false;
 
   try {
-    if (!WEBHOOK_SECRET) {
+    const webhookSecret = WEBHOOK_SECRET;
+    if (!webhookSecret) {
       throw new Error('RAZORPAY_WEBHOOK_SECRET is not set in environment variables');
     }
     const expectedSignature = crypto
-      .createHmac('sha256', WEBHOOK_SECRET)
+      .createHmac('sha256', webhookSecret)
       .update(body)
       .digest('hex');
 

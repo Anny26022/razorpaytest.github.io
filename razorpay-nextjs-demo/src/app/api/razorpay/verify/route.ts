@@ -82,6 +82,10 @@ export async function POST(request: Request) {
     // Docs: https://razorpay.com/docs/api/payments/payment-verification/#server-side-verification
     const paymentData = await request.json() as PaymentVerificationRequest;
 
+    // Ensure RAZORPAY_KEY_SECRET is defined (should always be, but for type safety)
+    if (!RAZORPAY_KEY_SECRET) {
+      throw new Error('RAZORPAY_KEY_SECRET is not set in environment variables');
+    }
     // Verify the payment signature
     const verificationResult = verifyPaymentSignature(paymentData, RAZORPAY_KEY_SECRET);
 
